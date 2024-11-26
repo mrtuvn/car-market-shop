@@ -9,7 +9,10 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
-import { Posts } from './collections/Posts'
+import { Categories } from './collections/Categories'
+import { Products } from './collections/Products'
+import { plugins } from './plugins'
+import { getServerSideURL } from './utilities/getURL'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -21,7 +24,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Posts],
+  collections: [Users, Media, Categories, Products],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -32,8 +35,10 @@ export default buildConfig({
       url: process.env.DATABASE_URI || '',
     },
   }),
+  cors: [getServerSideURL()].filter(Boolean),
   sharp,
   plugins: [
+    ...plugins,
     payloadCloudPlugin(),
     // storage-adapter-placeholder
   ],
