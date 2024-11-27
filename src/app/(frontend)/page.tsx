@@ -1,6 +1,7 @@
+import CarSlider from '@/components/carSlider/component.client'
+import ProductListsByCategory from '@/components/productListsByCategory/component.client'
 import DefaultLayout from '@/layouts/DefaultLayout/layout'
 import type { NextPage } from 'next'
-import Link from 'next/link'
 
 import React from 'react'
 
@@ -9,12 +10,16 @@ const Page: NextPage = () => {
     <DefaultLayout>
       <div className="container">
         <h1 className="text-center text-4xl font-bold">
-          Chợ phụ kiện xe ô tô & Đồ chơi thông minh
+          Chợ phụ kiện ôtô & Đồ chơi xe điện & Sạc điện & Nội - ngoại thất ôtô
         </h1>
       </div>
 
       <div className="container p-8 text-center font-medium">
-        Trang web đang xây dựng bạn chờ tiếp nhé....
+        <ProductListsByCategory categoryName="vehicle" />
+      </div>
+
+      <div className="container p-8 text-center font-medium">
+        <CarSlider />
       </div>
     </DefaultLayout>
   )

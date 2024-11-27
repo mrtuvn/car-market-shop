@@ -1,12 +1,13 @@
-import ProductList from '@/components/productsLists'
 import DefaultLayout from '@/layouts/DefaultLayout/layout'
-import { NextPage } from 'next'
 import React from 'react'
 
-const Page: NextPage = () => {
+const Page = () => {
   return (
     <DefaultLayout>
-      <p>GET SINGLE PRODUCT</p>
+      <div className="container">
+        Page Hot Product
+        <p>this is not ready</p>
+      </div>
     </DefaultLayout>
   )
 }

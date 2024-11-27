@@ -6,4 +6,8 @@
   * {
     @apply border-border;
   }
+
+  .container {
+    @apply mx-auto;
+  }
 }
