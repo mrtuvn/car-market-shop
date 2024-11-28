@@ -12,9 +12,7 @@ function createEmptyCart(): CartState {
 }
 
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
-  useEffect(() => {
-    useCart()
-  }, [])
+  useCart()
   return <>{children}</>
 }
 

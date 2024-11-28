@@ -5,7 +5,9 @@ import { RootState } from '@/redux/store'
 import { constants } from '@/constants'
 
 const initialState: CartState = {
-  items: JSON.parse(localStorage.getItem(constants['string-localstorage-cart']) || '[]'),
+  items:
+    typeof window !== 'undefined' &&
+    JSON.parse(localStorage.getItem(constants['string-localstorage-cart']) || '[]'),
   total: 0,
   isEmpty: true,
   totalItems: 0,

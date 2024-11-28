@@ -5,32 +5,31 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
+import { Product } from '@/types/product'
 
 type ProductsByCategory = {
   id: number
   title: string
   category: string
-}
+} & Product
 
-const Page: NextPage = ({ params }: { props: { params: string } }) => {
+const Page = ({ params }: { params: Promise<{ category: string }> }) => {
   const [products, setProducts] = useState<ProductsByCategory[]>([])
-  const { categoryName } = useParams()
+  const { category } = useParams()
   useEffect(() => {
-    console.log(categoryName)
-
     const getProductsByParamApi = async () => {
-      const res = await fetch(`https://dummyjson.com/products/category/${categoryName}`)
+      const res = await fetch(`https://dummyjson.com/products/category/${category}`)
       const data = await res.json()
       setProducts(data.products)
     }
 
     getProductsByParamApi()
-  }, [])
+  }, [category])
 
   return (
     <DefaultLayout>
       <div className="container mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <h2 className="text-bold">{categoryName}</h2>
+        <h2 className="text-bold">{category}</h2>
 
         {products && products.length > 0 ? (
           <>

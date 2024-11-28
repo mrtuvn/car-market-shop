@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useRef } from 'react'
 import { RootState } from '@/redux/store'
 import { useAppSelector } from '@/hooks/useAppSelector'
@@ -5,8 +6,8 @@ import { useAppDispatch } from '@/hooks/useAppDispatch'
 import { LOAD_CART } from '@/redux/slices/cart/cartSlice'
 import { constants } from '@/constants'
 
-const useCart = () => {
-  const cart = useAppSelector((state: RootState) => state.cart)
+export const useCart = () => {
+  const cart = useAppSelector((state: RootState) => state.rootReducer.cart)
   const dispatch = useAppDispatch()
   const isInitialized = useRef(true)
 
@@ -30,4 +31,3 @@ const useCart = () => {
     localStorage.setItem(constants['string-localstorage-cart'], JSON.stringify(cart))
   }, [cart])
 }
-export default useCart

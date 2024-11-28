@@ -11,6 +11,9 @@ import { Provider } from 'react-redux'
 import { store } from '@/redux/store'
 import CartProvider from '@/providers/Cart'
 
+//contexts
+import { DrawerProvider } from '@/contexts/drawer/drawerProvider'
+
 type LayoutProps = {
   children: ReactNode
 }
@@ -25,7 +28,9 @@ const Layout = ({ children }: LayoutProps) => {
     <html lang="en">
       <body className={cn('min-h-screen bg-background font-sans antialiased', openSans.className)}>
         <Provider store={store}>
-          <CartProvider>{children}</CartProvider>
+          <CartProvider>
+            <DrawerProvider>{children}</DrawerProvider>
+          </CartProvider>
         </Provider>
       </body>
     </html>

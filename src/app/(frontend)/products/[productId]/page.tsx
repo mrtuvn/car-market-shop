@@ -5,34 +5,44 @@ import Image from 'next/image'
 import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import type { Product } from '@/types/product'
-import type { RootState } from '@/redux/store'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import { ADD_ITEM } from '@/redux/slices/cart/cartSlice'
+import { ADD_ITEM, REMOVE_ITEM, UPDATE_ITEM } from '@/redux/slices/cart/cartSlice'
+import Counter from '@/components/ui/counter'
 
-const Page: NextPage = ({ params }) => {
-  const { productId } = useParams()
-  const [product, setProduct] = useState<Product>({})
+const Page = ({ params }: { params: Promise<{ id: number }> }) => {
+  const { productId } = useParams() // Fix noted: move this line from useEffect to this position. We shouldn't call this hook inside a callback
+  const [quantity, setQuantity] = useState(1)
+  const [product, setProduct] = useState<Product>()
 
-  const dispatch = useAppDispatch // return function dispatch
-
-  const handleAddToCart = (product: Product) => {
-    dispatch(ADD_ITEM(product))
-  }
+  const dispatch = useAppDispatch() // return function dispatch
 
   useEffect(() => {
-    console.log('type param', typeof params) // object
-    console.log(params) //Proxy promise
-
     const getProductsByID = async (id: number) => {
       const res = await fetch(`https://dummyjson.com/products/${id}`)
       const data = await res.json()
-      console.log(data)
-      console.log(typeof data.images)
       setProduct(data)
     }
 
     getProductsByID(productId)
   }, [])
+
+  const handleAddToCart = (product: Product) => {
+    console.log('quantity', quantity)
+    //dispatch(ADD_ITEM({ product, quantity: quantity }))
+  }
+
+  const {
+    id,
+    thumbnail,
+    brand,
+    stock,
+    title,
+    price,
+    sku,
+    discountPercentage,
+    rating,
+    description,
+  } = product ?? []
 
   function getPlaceHolderImage(size: number): string {
     if (size) {
@@ -42,6 +52,30 @@ const Page: NextPage = ({ params }) => {
     return `https://placehold.co/500x500`
   }
 
+  const outOfStock = quantity >= stock
+
+  const handleQuantityChange = (newQuantity: number) => {
+    if (newQuantity <= 0) {
+      dispatch(REMOVE_ITEM(id))
+    } else if (newQuantity > stock) {
+      // Optional: Show an error or limit to max stock
+
+      dispatch(
+        UPDATE_ITEM({
+          productId: id,
+          quantity: stock,
+        }),
+      )
+    } else {
+      dispatch(
+        UPDATE_ITEM({
+          productId: id,
+          quantity: newQuantity,
+        }),
+      )
+    }
+  }
+
   return (
     <DefaultLayout>
       <div className="bg-gray-100">
@@ -49,7 +83,7 @@ const Page: NextPage = ({ params }) => {
           <div className="-mx-4 flex flex-wrap">
             <div className="mb-8 w-full px-4 md:w-1/2">
               <Image
-                src={product?.thumbnail ? product?.thumbnail : getPlaceHolderImage(500)}
+                src={thumbnail ? thumbnail : getPlaceHolderImage(500)}
                 alt="Product"
                 width={500}
                 height={500}
@@ -60,11 +94,11 @@ const Page: NextPage = ({ params }) => {
             </div>
 
             <div className="w-full px-4 md:w-1/2">
-              <h2 className="mb-2 text-3xl font-bold">{product.title}</h2>
-              <p className="mb-4 text-gray-600">SKU: {product.sku}</p>
+              <h2 className="mb-2 text-3xl font-bold">{title}</h2>
+              <p className="mb-4 text-gray-600">SKU: {sku}</p>
               <div className="mb-4">
-                <span className="mr-2 text-2xl font-bold">${product.price}</span>
-                <span className="text-gray-500 line-through">${product.discountPercentage}</span>
+                <span className="mr-2 text-2xl font-bold">${price}</span>
+                <span className="text-gray-500 line-through">${discountPercentage}</span>
               </div>
               <div className="mb-4 flex items-center">
                 <svg
@@ -80,10 +114,10 @@ const Page: NextPage = ({ params }) => {
                   />
                 </svg>
 
-                <span className="ml-2 text-gray-600">{product.rating} (120 reviews)</span>
+                <span className="ml-2 text-gray-600">{rating} (120 reviews)</span>
               </div>
-              <p className="mb-6 text-gray-700">{product.description}</p>
-              <p className="mb-6 text-gray-700">Brand: {product.brand}</p>
+              <p className="mb-6 text-gray-700">{description}</p>
+              <p className="mb-6 text-gray-700">Brand: {brand}</p>
               <div className="mb-6">
                 <h3 className="mb-2 text-lg font-semibold">Color:</h3>
                 <div className="flex space-x-2">
@@ -97,14 +131,13 @@ const Page: NextPage = ({ params }) => {
                 <label htmlFor="quantity" className="mb-1 block text-sm font-medium text-gray-700">
                   Số lượng:
                 </label>
-                <input
-                  type="number"
-                  id="quantity"
-                  name="quantity"
-                  min="1"
-                  value=""
-                  max="3"
-                  className="w-12 rounded-md border-gray-300 text-center shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+
+                <Counter
+                  value={quantity}
+                  onIncrement={() => handleQuantityChange(quantity + 1)}
+                  onDecrement={() => handleQuantityChange(quantity - 1)}
+                  variant="cart"
+                  disabled={outOfStock}
                 />
               </div>
 
