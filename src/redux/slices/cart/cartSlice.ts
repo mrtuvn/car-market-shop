@@ -56,10 +56,11 @@ const cartSlice = createSlice({
 })
 
 // Selector for checking if product is in cart and its quantity
+// ts-ignore-errors
 export const selectCartItemDetails = createSelector(
   [(state: RootState) => state.cart.items, (_state: RootState, productId: number) => productId],
   (cartItems, productId) => {
-    const cartItem = cartItems.find((item) => item.id === productId)
+    const cartItem = cartItems.find((item: CartItem) => item.id === productId)
     return {
       isInCart: !!cartItem,
       quantity: cartItem?.quantity || 0,

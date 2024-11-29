@@ -1,4 +1,5 @@
 //import CarSlider from '@/components/carSlider/component.client'
+import CarSlider from '@/components/carSlider/component.client'
 import ProductListsByCategory from '@/components/productListsByCategory/component.client'
 import DefaultLayout from '@/layouts/DefaultLayout/layout'
 import type { NextPage } from 'next'
@@ -18,9 +19,9 @@ const Page: NextPage = () => {
         <ProductListsByCategory categoryName="vehicle" />
       </div>
 
-      {/* <div className="container p-8 text-center font-medium">
+      <div className="container p-8 text-center font-medium">
         <CarSlider />
-      </div> */}
+      </div>
     </DefaultLayout>
   )
 }

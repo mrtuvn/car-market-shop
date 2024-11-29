@@ -99,6 +99,9 @@ export default function CartDrawer() {
                       <p>
                         <Link
                           href="/cart"
+                          onClick={() => {
+                            closeDrawer()
+                          }}
                           className="font-medium text-indigo-600 hover:text-indigo-500"
                         >
                           Vào trang giỏ hàng

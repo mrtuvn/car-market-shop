@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState, memo } from 'react'
-import { Product } from '@/types/product.ts'
+import { Product } from '@/types/product'
 import Link from 'next/link'
 
 export default function ProductsClient() {

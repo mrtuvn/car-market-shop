@@ -6,7 +6,7 @@ import { ADD_ITEM } from '@/redux/slices/cart/cartSlice'
 
 interface AddToCartButtonProps {}
 // add 1 product no quantity (for used in product lists)
-const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }: { product: Product }) => {
+const AddToCartButton = ({ product }: { product: Product }) => {
   const dispatch = useAppDispatch()
 
   const handleAddToCart = () => {

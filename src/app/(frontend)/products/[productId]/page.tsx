@@ -1,34 +1,40 @@
 'use client'
 import DefaultLayout from '@/layouts/DefaultLayout/layout'
-import { NextPage } from 'next'
 import Image from 'next/image'
-import { useParams } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import type { Product } from '@/types/product'
-import { useAppDispatch, useAppSelector } from '@/hooks'
+import { useAppDispatch } from '@/hooks'
 import { ADD_ITEM, REMOVE_ITEM, UPDATE_ITEM } from '@/redux/slices/cart/cartSlice'
 import Counter from '@/components/ui/counter'
-
-const Page = ({ params }: { params: Promise<{ id: number }> }) => {
-  const { productId } = useParams() // Fix noted: move this line from useEffect to this position. We shouldn't call this hook inside a callback
-  const [quantity, setQuantity] = useState(1)
+import { CartItem } from '@/types/cart'
+type Params = {
+  params: {
+    productId: number
+  }
+}
+const Page = ({ params }: { params: Promise<{ params: Params }> }) => {
   const [product, setProduct] = useState<Product>()
+  const [quantity, setQuantity] = useState(1)
 
-  const dispatch = useAppDispatch() // return function dispatch
+  //NOTE: A param property was accessed directly with `params.productId`. `params` is now a Promise and should be unwrapped with `React.use()`
+  const { productId }: any = use(params).params
 
   useEffect(() => {
-    const getProductsByID = async (id: number) => {
-      const res = await fetch(`https://dummyjson.com/products/${id}`)
+    const fetchProduct = async () => {
+      const res = await fetch(`https://dummyjson.com/products/${productId}`)
       const data = await res.json()
       setProduct(data)
     }
 
-    getProductsByID(productId)
-  }, [])
+    if (productId) {
+      fetchProduct()
+    }
+  }, [productId])
 
-  const handleAddToCart = (product: Product) => {
-    console.log('quantity', quantity)
-    //dispatch(ADD_ITEM({ product, quantity: quantity }))
+  const dispatch = useAppDispatch() // return function dispatch
+
+  const handleAddToCart = (product: any) => {
+    dispatch(ADD_ITEM({ product, quantity: quantity }))
   }
 
   const {
@@ -42,14 +48,14 @@ const Page = ({ params }: { params: Promise<{ id: number }> }) => {
     discountPercentage,
     rating,
     description,
-  } = product ?? []
+  } = product as Product as CartItem
 
   function getPlaceHolderImage(size: number): string {
     if (size) {
       return `https://placehold.co/${size}x${size}`
     }
 
-    return `https://placehold.co/500x500`
+    return 'https://placehold.co/500x500'
   }
 
   const outOfStock = quantity >= stock
@@ -59,7 +65,7 @@ const Page = ({ params }: { params: Promise<{ id: number }> }) => {
       dispatch(REMOVE_ITEM(id))
     } else if (newQuantity > stock) {
       // Optional: Show an error or limit to max stock
-
+      setQuantity(stock)
       dispatch(
         UPDATE_ITEM({
           productId: id,
@@ -67,6 +73,7 @@ const Page = ({ params }: { params: Promise<{ id: number }> }) => {
         }),
       )
     } else {
+      setQuantity(newQuantity)
       dispatch(
         UPDATE_ITEM({
           productId: id,
@@ -144,19 +151,19 @@ const Page = ({ params }: { params: Promise<{ id: number }> }) => {
               <div className="mb-6 flex space-x-4">
                 <button
                   className="flex items-center gap-2 rounded-md bg-indigo-600 px-6 py-2 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  onClick={handleAddToCart}
+                  onClick={(e) => handleAddToCart(product)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
                     className="size-6"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
                     />
                   </svg>

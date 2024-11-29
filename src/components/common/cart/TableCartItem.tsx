@@ -7,7 +7,8 @@ import usePrice from '@/utilities/usePrice'
 import { useAppDispatch } from '@/hooks'
 import Image from 'next/image'
 import Counter from '@/components/ui/counter'
-const TableCartItem = ({ item }) => {
+import { CartItem } from '@/types/cart'
+const TableCartItem = ({ item }: { item: CartItem }) => {
   const dispatch = useAppDispatch()
   const { id, title, quantity, thumbnail } = item ?? {}
   const { price: totalPrice } = usePrice({
@@ -16,8 +17,8 @@ const TableCartItem = ({ item }) => {
   })
 
   const outOfStock = item.quantity >= item.stock
-  // Create slug from title
-  const slug = title.toLowerCase().replace(/\s+/g, '-')
+  // // Create slug from title
+  // const slug = title.toLowerCase().replace(/\s+/g, '-')
 
   const handleQuantityChange = (newQuantity: number) => {
     if (newQuantity <= 0) {
