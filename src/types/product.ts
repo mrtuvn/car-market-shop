@@ -23,13 +23,6 @@ interface Review {
   reviewerEmail: string
 }
 
-export interface Category {
-  slug: string
-  name: string
-  url: string
-  total?: number
-}
-
 export interface SearchResponse {
   products: Product[]
   total: number
@@ -44,21 +37,6 @@ export type QueryOptionsType = {
   limit?: number
 }
 
-export type UserAddress = {
-  id: number
-  firstName: string
-  lastName: string
-  address: Address['address']
-}
-
-interface Address {
-  address: {
-    address: string
-    city: string
-    postalCode: string
-    state: string
-  }
-}
 export type OrderItem = {
   id: number | string
   name: string

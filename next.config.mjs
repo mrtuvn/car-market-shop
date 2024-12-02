@@ -12,6 +12,11 @@ const placePathObj = {
   hostname: 'placehold.co',
 }
 
+const dummyHost = {
+  protocol: 'https',
+  hostname: 'dummyjson.com',
+}
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -27,9 +32,13 @@ const nextConfig = {
 
       cdnDummyJsonPathObj,
       placePathObj,
+      dummyHost,
     ],
   },
   reactStrictMode: true,
+  env: {
+    API_DUMMY_URL: process.env.REACT_APP_DUMMY_API_URL,
+  },
 }
 
 export default withPayload(nextConfig)

@@ -6,10 +6,10 @@ const NavBar = () => {
     <div>
       <ul className="inline-flex flex-wrap gap-4">
         <li>
-          <Link href="/products">Sản Phẩm Đang Hot</Link>
+          <Link href="/products/hot">Sản Phẩm Đang Hot</Link>
         </li>
         <li>
-          <Link href="/categories">Danh mục</Link>
+          <Link href="/categories">Tất cả danh mục</Link>
         </li>
         <li>
           <Link href="/contact-me">Liên hệ</Link>

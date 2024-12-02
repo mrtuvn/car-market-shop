@@ -7,6 +7,7 @@ import { useAppDispatch } from '@/hooks'
 import { ADD_ITEM, REMOVE_ITEM, UPDATE_ITEM } from '@/redux/slices/cart/cartSlice'
 import Counter from '@/components/ui/counter'
 import { CartItem } from '@/types/cart'
+
 type Params = {
   params: {
     productId: number
@@ -15,27 +16,6 @@ type Params = {
 const Page = ({ params }: { params: Promise<{ params: Params }> }) => {
   const [product, setProduct] = useState<Product>()
   const [quantity, setQuantity] = useState(1)
-
-  //NOTE: A param property was accessed directly with `params.productId`. `params` is now a Promise and should be unwrapped with `React.use()`
-  const { productId }: any = use(params).params
-
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const res = await fetch(`https://dummyjson.com/products/${productId}`)
-      const data = await res.json()
-      setProduct(data)
-    }
-
-    if (productId) {
-      fetchProduct()
-    }
-  }, [productId])
-
-  const dispatch = useAppDispatch() // return function dispatch
-
-  const handleAddToCart = (product: any) => {
-    dispatch(ADD_ITEM({ product, quantity: quantity }))
-  }
 
   const {
     id,
@@ -48,7 +28,28 @@ const Page = ({ params }: { params: Promise<{ params: Params }> }) => {
     discountPercentage,
     rating,
     description,
-  } = product as Product as CartItem
+  } = (product as Product as CartItem) || {}
+
+  //NOTE: A param property was accessed directly with `params.productId`. `params` is now a Promise and should be unwrapped with `React.use()`
+  const { productId }: any = use(params)
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const res = await fetch(`https://dummyjson.com/products/${productId}`)
+      const data = await res.json()
+      setProduct(data)
+    }
+
+    if (productId) {
+      fetchProduct()
+    }
+  }, [])
+
+  const dispatch = useAppDispatch() // return function dispatch
+
+  const handleAddToCart = (product: any) => {
+    dispatch(ADD_ITEM({ product, quantity: quantity }))
+  }
 
   function getPlaceHolderImage(size: number): string {
     if (size) {

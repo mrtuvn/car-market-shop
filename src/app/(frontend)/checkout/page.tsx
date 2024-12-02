@@ -5,7 +5,7 @@ const Page = () => {
   return (
     <DefaultLayout>
       <div className="container">
-        <h1 className="text-medium font-bold">Checkout</h1>
+        <h1 className="text-medium font-bold">Checkout Under Developements</h1>
       </div>
     </DefaultLayout>
   )

@@ -19,9 +19,9 @@ const Page: NextPage = () => {
         <ProductListsByCategory categoryName="vehicle" />
       </div>
 
-      <div className="container p-8 text-center font-medium">
+      {/* <div className="container p-8 text-center font-medium">
         <CarSlider />
-      </div>
+      </div> */}
     </DefaultLayout>
   )
 }

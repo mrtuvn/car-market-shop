@@ -13,6 +13,10 @@ import CartProvider from '@/providers/Cart'
 
 //contexts
 import { DrawerProvider } from '@/contexts/drawer/drawerProvider'
+import { ModalProvider } from '@/contexts/modal/modalProvider'
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+const queryClient = new QueryClient()
 
 type LayoutProps = {
   children: ReactNode
@@ -27,11 +31,15 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <html lang="en">
       <body className={cn('min-h-screen bg-background font-sans antialiased', openSans.className)}>
-        <Provider store={store}>
-          <CartProvider>
-            <DrawerProvider>{children}</DrawerProvider>
-          </CartProvider>
-        </Provider>
+        <QueryClientProvider client={queryClient}>
+          <Provider store={store}>
+            <CartProvider>
+              <DrawerProvider>
+                <ModalProvider>{children}</ModalProvider>
+              </DrawerProvider>
+            </CartProvider>
+          </Provider>
+        </QueryClientProvider>
       </body>
     </html>
   )

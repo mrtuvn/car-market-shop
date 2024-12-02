@@ -8,9 +8,7 @@ const Page: NextPage = () => {
   return (
     <DefaultLayout>
       <div className="container">
-        <h2>Danh mục:</h2>
         <Categories />
-        <hr className="my-3" />
       </div>
     </DefaultLayout>
   )
