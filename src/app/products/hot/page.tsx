@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import React, { useState } from 'react'
-import { fetchProductsByCategory } from '@mockapi/fetchProductsByCategory'
+import { fetchProductsByCategory } from '@/app/api/fetchProductsByCategory'
 import { useQuery } from '@tanstack/react-query'
 import { SearchResponse } from '@/types/product'
 import DefaultLayout from '@/layouts/DefaultLayout/layout'

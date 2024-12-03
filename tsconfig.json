@@ -20,8 +20,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@mockapi/*": ["./src/app/(frontend)/api/*"],
-      "@payload-config": ["./src/payload.config.ts"]
+      "@mockapi/*": ["src/app/api/*"]
     },
     "target": "ES2022"
   },

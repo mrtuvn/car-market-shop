@@ -1,5 +1,3 @@
-import { withPayload } from '@payloadcms/next/withPayload'
-
 /** @type {import('next').NextConfig} */
 
 const cdnDummyJsonPathObj = {
@@ -17,6 +15,7 @@ const dummyHost = {
   hostname: 'dummyjson.com',
 }
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -36,9 +35,5 @@ const nextConfig = {
     ],
   },
   reactStrictMode: true,
-  env: {
-    API_DUMMY_URL: process.env.REACT_APP_DUMMY_API_URL,
-  },
 }
-
-export default withPayload(nextConfig)
+export default nextConfig
