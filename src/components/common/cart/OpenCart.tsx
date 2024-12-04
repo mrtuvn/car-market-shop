@@ -21,7 +21,7 @@ const OpenCart = () => {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="size-8"
+        className="size-9"
       >
         <path
           strokeLinecap="round"

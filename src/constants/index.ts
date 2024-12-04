@@ -1,4 +1,5 @@
-export const constants = {
-  'string-localstorage-cart': 'ls-cart',
-  'cart-context': 'cart',
-}
+export const cartStorageKey = 'ls-cart'
+
+export const themeLocalStorageKey = 'shop-theme'
+
+export const defaultTheme = 'light'

@@ -4,7 +4,7 @@ import { RootState } from '@/redux/store'
 import { useAppSelector } from '@/hooks/useAppSelector'
 import { useAppDispatch } from '@/hooks/useAppDispatch'
 import { LOAD_CART } from '@/redux/slices/cart/cartSlice'
-import { constants } from '@/constants'
+import { cartStorageKey } from '@/constants'
 
 export const useCart = () => {
   const cart = useAppSelector((state: RootState) => state.rootReducer.cart)
@@ -14,7 +14,7 @@ export const useCart = () => {
   // Initialize cart from localStorage on mount
   useEffect(() => {
     // Initialize the cart state from localStorage when the app starts
-    const storedCart = localStorage.getItem(constants['string-localstorage-cart'])
+    const storedCart = localStorage.getItem(cartStorageKey)
 
     if (storedCart) {
       const cartState = JSON.parse(storedCart)
@@ -28,6 +28,6 @@ export const useCart = () => {
       isInitialized.current = false // Skip first render
       return
     }
-    localStorage.setItem(constants['string-localstorage-cart'], JSON.stringify(cart))
+    localStorage.setItem(cartStorageKey, JSON.stringify(cart))
   }, [cart])
 }

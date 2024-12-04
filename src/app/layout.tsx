@@ -14,6 +14,7 @@ import CartProvider from '@/providers/Cart'
 //contexts
 import { DrawerProvider } from '@/contexts/drawer/drawerProvider'
 import { ModalProvider } from '@/contexts/modal/modalProvider'
+import { ThemeProvider } from '@/contexts/theme/themeProvider'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 const queryClient = new QueryClient()
@@ -30,17 +31,21 @@ const openSans = Open_Sans({
 const Layout = ({ children }: LayoutProps) => {
   return (
     <html lang="en">
-      <body className={cn('min-h-screen bg-background font-sans antialiased', openSans.className)}>
-        <QueryClientProvider client={queryClient}>
-          <Provider store={store}>
-            <CartProvider>
-              <DrawerProvider>
-                <ModalProvider>{children}</ModalProvider>
-              </DrawerProvider>
-            </CartProvider>
-          </Provider>
-        </QueryClientProvider>
-      </body>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <ThemeProvider>
+            <body
+              className={cn('min-h-screen bg-background font-sans antialiased', openSans.className)}
+            >
+              <CartProvider>
+                <DrawerProvider>
+                  <ModalProvider>{children}</ModalProvider>
+                </DrawerProvider>
+              </CartProvider>
+            </body>
+          </ThemeProvider>
+        </Provider>
+      </QueryClientProvider>
     </html>
   )
 }

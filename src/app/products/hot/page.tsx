@@ -50,7 +50,6 @@ const ProductHotDeals: React.FC<ProductFeedProps> = ({
                         <div key={product.id}>
                           <h2>{product.title}</h2>
                           <p>{product.description}</p>
-                          {/* ...other product details */}
                         </div>
                       ))}
                     </div>

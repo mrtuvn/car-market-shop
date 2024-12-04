@@ -1,29 +1,36 @@
-//import CarSlider from '@/components/carSlider/component.client'
-import CarSlider from '@/components/carSlider/component.client'
+import CarSlider from '@/components/carSlider/Component'
 import ProductListsByCategory from '@/components/productListsByCategory/component.client'
 import DefaultLayout from '@/layouts/DefaultLayout/layout'
 import type { NextPage } from 'next'
 import BannerPromo from '@/components/ui/banner-promo'
 import React from 'react'
+import MainHomeSlider from '@/components/herosSlider/MainHomeSliderSlick'
+import Container from '@/components/ui/container'
+import BrandHomeSliderSwiper from '@/components/herosSlider/BrandHomeSliderSwiper'
+import BlogsList from '@/components/blog/BlogsList'
 
 const Page: NextPage = () => {
   return (
     <>
       <BannerPromo />
       <DefaultLayout>
-        <div className="container">
+        <MainHomeSlider />
+
+        <Container>
           <h1 className="text-center text-4xl font-bold">
             Chợ phụ kiện ôtô & Đồ chơi xe điện & Sạc điện & Nội - ngoại thất ôtô
           </h1>
-        </div>
+        </Container>
 
-        <div className="container p-8 text-center font-medium">
+        <Container>
           <ProductListsByCategory categoryName="vehicle" />
-        </div>
+        </Container>
 
-        {/* <div className="container p-8 text-center font-medium">
-        <CarSlider />
-      </div> */}
+        <BrandHomeSliderSwiper />
+
+        <BlogsList />
+
+        {/* <CarSlider /> */}
       </DefaultLayout>
     </>
   )

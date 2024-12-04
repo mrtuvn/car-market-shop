@@ -2,12 +2,10 @@
 import { createSlice, PayloadAction, createSelector } from '@reduxjs/toolkit'
 import { CartState, CartItem } from '@/types/cart'
 import { RootState } from '@/redux/store'
-import { constants } from '@/constants'
+import { cartStorageKey } from '@/constants/index'
 
 const initialState: CartState = {
-  items:
-    typeof window !== 'undefined' &&
-    JSON.parse(localStorage.getItem(constants['string-localstorage-cart']) || '[]'),
+  items: typeof window !== 'undefined' && JSON.parse(localStorage.getItem(cartStorageKey) || '[]'),
   total: 0,
   isEmpty: true,
   totalItems: 0,
@@ -58,7 +56,7 @@ const cartSlice = createSlice({
 // Selector for checking if product is in cart and its quantity
 export const selectCartItemDetails = createSelector(
   [(state: RootState) => state.cart.items, (_state: RootState, productId: number) => productId],
-  (cartItems, productId) => {
+  (cartItems: CartItem[], productId: number) => {
     const cartItem = cartItems.find((item: CartItem) => item.id === productId)
     return {
       isInCart: !!cartItem,
