@@ -1,4 +1,3 @@
-import CarSlider from '@/components/carSlider/Component'
 import ProductListsByCategory from '@/components/productListsByCategory/component.client'
 import DefaultLayout from '@/layouts/DefaultLayout/layout'
 import type { NextPage } from 'next'
@@ -6,8 +5,10 @@ import BannerPromo from '@/components/ui/banner-promo'
 import React from 'react'
 import MainHomeSlider from '@/components/herosSlider/MainHomeSlider'
 import Container from '@/components/ui/container'
-import BrandHomeSlider from '@/components/herosSlider/BrandHomeSlider'
-import BlogsList from '@/components/blog/BlogsList'
+
+//import CarSlider from '@/components/carSlider/Component'
+//import BrandHomeSlider from '@/components/herosSlider/BrandHomeSlider'
+//import BlogsList from '@/components/blog/BlogsList'
 
 const Page: NextPage = () => {
   return (
@@ -26,9 +27,9 @@ const Page: NextPage = () => {
           <ProductListsByCategory categoryName="vehicle" />
         </Container>
 
-        <BrandHomeSlider />
+        {/* <BrandHomeSlider />
 
-        <BlogsList />
+        <BlogsList /> */}
 
         {/* <CarSlider /> */}
       </DefaultLayout>
