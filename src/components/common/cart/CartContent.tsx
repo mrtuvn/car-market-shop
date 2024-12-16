@@ -17,10 +17,9 @@ const CartContent = () => {
 
   return (
     <div className="container">
-      <h1 className="pb-5">Giỏ Hàng</h1>
-
       {!isEmpty ? (
         <div className="flex flex-col gap-8 xl:flex-row 2xl:gap-10">
+          <h1 className="pb-5">Giỏ Hàng</h1>
           <div className="w-full xl:basis-9/12">
             <div className="relative mb-10 overflow-x-auto">
               <table className="text-fill-base w-full divide-y text-left text-sm">

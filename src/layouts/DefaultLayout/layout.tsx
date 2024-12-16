@@ -5,7 +5,7 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
   return (
     <>
       <Header />
-      <main className="main">{children}</main>
+      <main className="main min-h-svh">{children}</main>
       <Footer />
     </>
   )
