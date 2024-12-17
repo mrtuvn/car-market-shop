@@ -15,26 +15,29 @@ const Categories = () => {
     { id: 3, name: 'motorcycle' },
   ]
 
-  useEffect(() => {
-    const limit = 10
-    const getCategoriesFromDummyApi = async () => {
-      const res = await fetch(
-        'https://dummyjson.com/products/categories?limit=5&select=slug,name,url',
-      )
-      const data = await res.json()
-      setCategories(data)
-    }
+  // useEffect(() => {
+  //   const limit = 10
+  //   const getCategoriesFromDummyApi = async () => {
+  //     const res = await fetch(
+  //       'https://dummyjson.com/products/categories?limit=5&select=slug,name,url',
+  //     )
+  //     const data = await res.json()
+  //     setCategories(data)
+  //   }
 
-    //getCategoriesFromDummyApi()
-  }, [categories])
+  //   //getCategoriesFromDummyApi()
+  // }, [categories])
 
   return (
     <div>
       {usedCategories ? (
-        <ul className="inline-flex flex-wrap gap-3">
+        <ul className="mx-auto inline-flex w-full flex-wrap items-center justify-center gap-5 p-[90px]">
           {usedCategories?.map((category, id) => (
             <li key={id}>
-              <Link className="text-medium group" href={`product/category/${category.name}`}>
+              <Link
+                className="text-medium group h-10 w-10 bg-gray-600 p-10 text-white"
+                href={`product/category/${category.name}`}
+              >
                 {category.name}
               </Link>
             </li>

@@ -29,11 +29,11 @@ const Page = ({ params }: { params: Promise<{ category: string }> }) => {
   return (
     <DefaultLayout>
       <div className="container mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <h2 className="text-bold">{category}</h2>
+        <h2 className="text-bold mb-8 text-center text-[30px] font-black">{category}</h2>
 
         {products && products.length > 0 ? (
           <>
-            <p>Số lượng: {products?.length}</p>
+            <p className="mb-4 font-semibold">Số lượng: {products?.length}</p>
             <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
               {products?.map((product, index) => (
                 <Link key={index} className="group" href={`products/${product.id}`}>

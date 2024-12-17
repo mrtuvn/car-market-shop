@@ -5,6 +5,8 @@ import BannerPromo from '@/components/ui/banner-promo'
 import React from 'react'
 import MainHomeSlider from '@/components/herosSlider/MainHomeSlider'
 import Container from '@/components/ui/container'
+import HomeBanner from '@/components/banner/HomeBanner'
+import ProductWithDeals from '@/components/product-with-deals/product-with-deals'
 
 //import CarSlider from '@/components/carSlider/Component'
 //import BrandHomeSlider from '@/components/herosSlider/BrandHomeSlider'
@@ -30,6 +32,13 @@ const Page: NextPage = () => {
         {/* <BrandHomeSlider />
 
         <BlogsList /> */}
+
+        {/* banner deals 4 products with sliders*/}
+        {/* <ProductWithDeals /> */}
+
+        <HomeBanner />
+
+        {/* Charger List */}
 
         {/* <CarSlider /> */}
       </DefaultLayout>

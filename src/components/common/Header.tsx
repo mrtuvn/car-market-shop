@@ -6,18 +6,18 @@ import OpenCart from '@/components/common/cart/OpenCart'
 import CartDrawer from '@/components/common/cart/CartDrawer'
 import Container from '../ui/container'
 import OpenSearch from './search/OpenSearch'
-import ButtonSwitchTheme from '../themeSwitcher/ButtonSwitchTheme'
+//import ButtonSwitchTheme from '../themeSwitcher/ButtonSwitchTheme'
 
 const Header = () => {
   return (
     <header className="bg-gray-800 text-white">
-      <Container>
+      {/* <Container>
         <div className="flex items-end">
           <div className="ml-auto">
             <ButtonSwitchTheme />
           </div>
         </div>
-      </Container>
+      </Container> */}
       <Container>
         <div className="flex content-between items-center p-5 md:gap-6">
           <div className="left flex items-center gap-4">
