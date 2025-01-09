@@ -1,24 +1,16 @@
-import siteLogo from '@/assets/logo.svg'
-import sellFooterLogo from '@/assets/sell.webp'
+import siteLogo from '../assets/images/logo.svg'
 export const siteSettings = {
-  name: 'Uminex',
-  description:
-    'Fastest E-commerce template built with React, NextJS, TypeScript, React-Query and Tailwind CSS.',
+  name: 'Shop',
+  location: '15 Mai Dong, Hoang Mai, Hanoi, Vietnam.',
+  description: 'E-commerce template built with React, TypeScript, React-Query and Tailwind CSS.',
   author: {
-    name: 'Tuna Shop.',
+    name: 'TunaShop, Inc.',
     websiteUrl: '#',
     address: '',
   },
   logo: {
     url: siteLogo,
     alt: 'Uminex',
-    href: '/',
-    width: 195,
-    height: 26,
-  },
-  sellFooter: {
-    url: sellFooterLogo,
-    alt: 'Selling',
     href: '/',
     width: 195,
     height: 26,

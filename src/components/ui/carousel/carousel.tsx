@@ -1,63 +1,39 @@
-'use client'
+'use client';
 
-import cn from 'classnames'
-import { useRef } from 'react'
-//import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
-import { Swiper, Navigation, Autoplay, Pagination, Grid } from './slider'
-import 'swiper/css/autoplay'
-import 'swiper/css/grid'
-import 'swiper/css/pagination'
-//import { getDirection } from '../../../utils/get-direction';
-
-const arrowLeft = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className="size-6"
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
-  </svg>
-)
-
-const arrowRight = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className="size-6"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
-    />
-  </svg>
-)
+import cn from 'classnames';
+import { useRef } from 'react';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import {
+  Swiper,
+  Navigation,
+  Autoplay,
+  Pagination,
+  Grid,
+} from './slider';
+import 'swiper/css/autoplay';
+import 'swiper/css/grid';
+import 'swiper/css/pagination';
+import { getDirection } from '../../../utils/get-direction';
 
 type CarouselPropsType = {
-  lang?: string
-  className?: string
-  buttonGroupClassName?: string
-  prevActivateId?: string
-  nextActivateId?: string
-  prevButtonClassName?: string
-  nextButtonClassName?: string
-  buttonSize?: 'default' | 'small'
-  centeredSlides?: boolean
-  loop?: boolean
-  slidesPerColumn?: number
-  breakpoints?: {} | any
-  spaceBetween?: number
-  pagination?: {} | any
-  navigation?: {} | any
-  autoplay?: {} | any
-  grid?: {} | any
-}
+  lang?: string;
+  className?: string;
+  buttonGroupClassName?: string;
+  prevActivateId?: string;
+  nextActivateId?: string;
+  prevButtonClassName?: string;
+  nextButtonClassName?: string;
+  buttonSize?: 'default' | 'small';
+  centeredSlides?: boolean;
+  loop?: boolean;
+  slidesPerColumn?: number;
+  breakpoints?: {} | any;
+  spaceBetween?: number;
+  pagination?: {} | any;
+  navigation?: {} | any;
+  autoplay?: {} | any;
+  grid?: {} | any;
+};
 
 export default function Carousel({
   lang,
@@ -78,20 +54,19 @@ export default function Carousel({
   autoplay,
   ...props
 }: React.PropsWithChildren<CarouselPropsType>) {
-  //const dir = getDirection(lang);
-  const dir = 'ltr'
-  const prevRef = useRef<HTMLDivElement>(null)
-  const nextRef = useRef<HTMLDivElement>(null)
+  const dir = getDirection(lang);
+  const prevRef = useRef<HTMLDivElement>(null);
+  const nextRef = useRef<HTMLDivElement>(null);
   let nextButtonClasses = cn(
     'swiper-next w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10 text-base lg:text-lg xl:text-xl cursor-pointer flex items-center justify-center rounded-full bg-white absolute transition duration-300 hover:bg-brand hover:text-brand-light focus:outline-none transform shadow-md',
     { '3xl:text-2xl': buttonSize === 'default' },
     nextButtonClassName,
-  )
+  );
   let prevButtonClasses = cn(
     'swiper-prev w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10 text-base lg:text-lg xl:text-xl cursor-pointer flex items-center justify-center rounded-full bg-white absolute transition duration-300 hover:bg-brand hover:text-brand-light focus:outline-none transform shadow-md',
     { '3xl:text-2xl': buttonSize === 'default' },
     prevButtonClassName,
-  )
+  );
   return (
     <div
       className={`carouselWrapper relative ${className} ${
@@ -109,7 +84,7 @@ export default function Carousel({
         navigation={
           navigation
             ? {
-                prevEl: prevActivateId.length ? `#${prevActivateId}` : prevRef.current!, // Assert non-null
+                prevEl: prevActivateId.length? `#${prevActivateId}`: prevRef.current!, // Assert non-null
                 nextEl: nextActivateId.length ? `#${nextActivateId}` : nextRef.current!, // Assert non-null
               }
             : {}
@@ -124,31 +99,31 @@ export default function Carousel({
       </Swiper>
       {Boolean(navigation) && (
         <div
-          className={`absolute z-10 flex w-full items-center ${
+          className={`flex items-center w-full absolute  z-10  ${
             buttonGroupClassName ? buttonGroupClassName : 'top-2/4'
           }`}
         >
           {prevActivateId.length > 0 ? (
             <div className={prevButtonClasses} id={prevActivateId}>
-              {arrowLeft}
+              <IoIosArrowBack />
             </div>
           ) : (
             <div ref={prevRef} className={prevButtonClasses}>
-              {arrowLeft}
+              <IoIosArrowBack />
             </div>
           )}
 
           {nextActivateId.length > 0 ? (
             <div className={nextButtonClasses} id={nextActivateId}>
-              {arrowRight}
+              <IoIosArrowForward />
             </div>
           ) : (
             <div ref={nextRef} className={nextButtonClasses}>
-              {arrowRight}
+              <IoIosArrowForward />
             </div>
           )}
         </div>
       )}
     </div>
-  )
+  );
 }

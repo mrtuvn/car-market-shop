@@ -1,8 +1,11 @@
+import { logout } from '../../slices/auth/authSlice'
+import { useAppDispatch } from '../../hooks'
+
 export const LogoutButton = () => {
-  //const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   const handleLogout = () => {
-    //dispatch(logout());
+    dispatch(logout())
   }
   return (
     <button

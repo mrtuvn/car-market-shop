@@ -1,19 +1,21 @@
-import cn from 'classnames'
+import cn from 'classnames';
 
-import MinusIcon from './icons/minus-icon'
-import PlusIcon from './icons/plus-icon'
+import MinusIcon from '../icons/minus-icon';
+import PlusIcon from '../icons/plus-icon';
 
-type ButtonEvent = (e: React.MouseEvent<HTMLButtonElement | MouseEvent>) => void
+type ButtonEvent = (
+  e: React.MouseEvent<HTMLButtonElement | MouseEvent>
+) => void;
 
 type CounterProps = {
-  lang?: string
-  value: number
-  variant?: 'mercury' | 'cart' | 'single' | 'cardv2'
-  onDecrement: ButtonEvent
-  onIncrement: ButtonEvent
-  className?: string
-  disabled?: boolean
-}
+  lang?: string;
+  value: number;
+  variant?: 'mercury' | 'cart' | 'single' | 'cardv2';
+  onDecrement: ButtonEvent;
+  onIncrement: ButtonEvent;
+  className?: string;
+  disabled?: boolean;
+};
 
 const Counter: React.FC<CounterProps> = ({
   lang,
@@ -24,32 +26,32 @@ const Counter: React.FC<CounterProps> = ({
   className,
   disabled,
 }) => {
-  const size = variant === 'single' ? '22' : '13'
+  const size = variant === 'single' ? '22' : '13';
   return (
     <div
       className={cn(
-        'button--mutiqty flex shrink-0 items-center justify-between overflow-hidden rounded',
+        'button--mutiqty  flex items-center justify-between rounded overflow-hidden shrink-0 ',
         {
-          'bg-brand shadow-counter h-8 rounded-3xl md:h-10':
+          'h-8 md:h-10 bg-brand shadow-counter rounded-3xl':
             variant === 'mercury' || variant === 'cardv2',
-          'mb-5 h-11 w-40 rounded-md bg-[#f3f5f9] px-3 md:h-14': variant === 'single',
+          'rounded-md h-11 md:h-14 bg-[#f3f5f9] w-40 mb-5 px-3': variant === 'single',
           'inline-flex': variant === 'cart',
         },
-        className,
+        className
       )}
     >
       <button
         onClick={onDecrement}
         className={cn(
-          'flex shrink-0 items-center justify-center transition-all duration-300 ease-in-out focus:outline-none focus-visible:outline-none',
+          'flex items-center justify-center shrink-0 transition-all ease-in-out duration-300 focus:outline-none focus-visible:outline-none',
           {
-            'text-heading ms-1 h-8 w-8 rounded-2xl text-white md:w-12':
+            'w-8 md:w-12 h-8 rounded-2xl text-white text-heading ms-1':
               variant === 'mercury' || variant === 'cardv2',
-            'scale-80 text-brand-dark hover:bg-fill-four !h-8 !w-8 transform rounded-full lg:scale-100 ltr:ml-auto rtl:mr-auto':
+            '!w-8 !h-8 rounded-full transform scale-80 lg:scale-100 text-brand-dark hover:bg-fill-four ltr:ml-auto rtl:mr-auto':
               variant === 'single',
-            'border-border-three hover:bg-brand text-brand-muted hover:border-brand hover:text-brand-light !h-6 !w-6 rounded-full border pr-0':
+            '!w-6 !h-6 pr-0 border border-border-three hover:bg-brand text-brand-muted hover:border-brand rounded-full hover:text-brand-light':
               variant === 'cart',
-          },
+          }
         )}
       >
         <span className="sr-only">button-minus</span>
@@ -57,12 +59,13 @@ const Counter: React.FC<CounterProps> = ({
       </button>
       <span
         className={cn(
-          'duration-250 flex h-full shrink-0 cursor-default items-center justify-center font-semibold transition-colors ease-in-out',
+          'font-semibold flex items-center justify-center h-full transition-colors duration-250 ease-in-out cursor-default shrink-0',
           {
-            'w-6 text-sm text-white md:text-base': variant === 'mercury' || variant === 'cardv2',
-            'w-12 text-base md:w-12 md:text-[17px]': variant === 'single',
+            'text-sm md:text-base w-6 text-white':
+              variant === 'mercury' || variant === 'cardv2',
+            'text-base md:text-[17px] w-12 md:w-12': variant === 'single',
             'text-15px w-9': variant === 'cart',
-          },
+          }
         )}
       >
         {value}
@@ -71,15 +74,15 @@ const Counter: React.FC<CounterProps> = ({
         onClick={onIncrement}
         disabled={disabled}
         className={cn(
-          'group flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none focus-visible:outline-none',
+          'group flex items-center justify-center transition-all ease-in-out duration-300 focus:outline-none focus-visible:outline-none',
           {
-            'text-heading me-1 h-8 w-8 rounded-2xl text-white md:w-12':
+            'w-8 md:w-12 h-8 rounded-2xl text-heading text-white me-1':
               variant === 'mercury' || variant === 'cardv2',
-            'scale-80 text-heading hover:bg-fill-four !h-8 !w-8 justify-center rounded-full !pr-0 lg:scale-100':
+            '!w-8 !h-8 rounded-full scale-80 lg:scale-100 text-heading hover:bg-fill-four  !pr-0 justify-center':
               variant === 'single',
-            'text-brand-muted border-border-three hover:bg-brand hover:border-brand hover:text-brand-light !h-6 !w-6 rounded-full border !pr-0':
+            '!w-6 !h-6 border text-brand-muted border-border-three hover:bg-brand hover:border-brand rounded-full hover:text-brand-light !pr-0':
               variant === 'cart',
-          },
+          }
         )}
         title={disabled ? 'Out Of Stock' : ''}
       >
@@ -87,7 +90,7 @@ const Counter: React.FC<CounterProps> = ({
         <PlusIcon width={size} height={size} opacity="1" />
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default Counter
+export default Counter;

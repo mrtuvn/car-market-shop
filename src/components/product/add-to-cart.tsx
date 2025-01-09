@@ -1,9 +1,9 @@
 import React from 'react'
-import { Product } from '@/types/product'
+import { Product } from '../../types/Product'
 import { toast } from 'react-toastify'
-import { useAppDispatch, useAppSelector } from '@/hooks'
-import { ADD_ITEM, selectCartItemDetails } from '@/redux/slices/cart/cartSlice'
-import { useModal } from '@/contexts/useModal'
+import { useAppDispatch, useAppSelector } from '../../hooks'
+import { ADD_ITEM, selectCartItemDetails } from '../../slices/cart/cartSlice'
+import { useModal } from '../../contexts'
 interface AddToCartProps {
   product: Product
 }

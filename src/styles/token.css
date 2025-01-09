@@ -1,0 +1,31 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border: '';
+  input: '';
+  ring: '';
+  background: '';
+  foreground: '';
+  primary: '';
+  primary-foreground: '';
+  secondary: '';
+  secondary-foreground: '';
+  destructive: '';
+  destructive-foreground: '';
+  muted: '';
+  muted-foreground: '';
+  accent: '';
+  accent-foreground: '';
+  popover: '';
+  popover-foreground: '';
+  card: '';
+  card-foreground: '';
+  radius: '';
+  radix-accordion-content-height: '';
+  radix-accordion-content-height: '';
+}

@@ -25,4 +25,4 @@ export const ROUTES = {
   ORDER: '/complete-order',
   WISHLIST: '/my-account/wishlist',
   BLOG: `/blog`,
-}
+};

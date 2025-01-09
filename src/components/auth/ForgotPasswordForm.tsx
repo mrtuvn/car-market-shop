@@ -1,36 +1,36 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import Link from 'next/link'
-import { redirect } from 'next/navigation'
-// import { useAppDispatch, useAppSelector } from '../../hooks'
-// import { logout } from '../../features/auth/authSlice'
-// import { forgotPasswordAsync } from '../../features/auth/authThunks'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../hooks'
+import { logout } from '../../slices/auth/authSlice'
+import { forgotPasswordAsync } from '../../slices/auth/authThunks'
 interface ForgotPasswordFormType {
   email: string
 }
 
 export const ForgotPasswordForm: React.FC = () => {
-  // const dispatch = useAppDispatch()
-  // const { isLoading, error, success } = useAppSelector((state) => state.auth)
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const { isLoading, error, success } = useAppSelector((state) => state.auth)
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ForgotPasswordFormType>()
 
-  // useEffect(() => {
-  //   if (success) {
-  //     dispatch(logout()) // Reset success state
-  //     redirect('/login')
-  //   }
-  //   return () => {
-  //     dispatch(logout())
-  //   }
-  // }, [success, redirect, dispatch])
+  useEffect(() => {
+    if (success) {
+      dispatch(logout()) // Reset success state
+      navigate('/login')
+    }
+    return () => {
+      dispatch(logout())
+    }
+  }, [success, navigate, dispatch])
 
-  // const onSubmit = async (data: ForgotPasswordFormType) => {
-  //   dispatch(forgotPasswordAsync(data.email))
-  // }
+  const onSubmit = async (data: ForgotPasswordFormType) => {
+    dispatch(forgotPasswordAsync(data.email))
+  }
 
   return (
     <div className="m-auto w-full max-w-lg space-y-10 rounded border bg-white p-8 shadow-md">
@@ -71,7 +71,7 @@ export const ForgotPasswordForm: React.FC = () => {
         <div className="text-center">
           <p className="text-sm text-gray-600">
             Back to{' '}
-            <Link href="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+            <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
               Sign in now
             </Link>
           </p>
