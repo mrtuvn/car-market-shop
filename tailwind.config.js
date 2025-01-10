@@ -2,7 +2,7 @@
 
 const config = {
   darkMode: 'class',
-  content: ['./components/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
+  content: ['./src/**/*.{ts,tsx}'],
   prefix: '',
   theme: {
     extend: {
@@ -27,8 +27,7 @@ const config = {
         contact: '0 1px 10px rgba(75, 90, 130, 0.1)',
         vendorCard: '0px 2px 3px rgba(0, 0, 0, 0.06)',
         vendorCardHover: '0px 1px 15px rgba(0, 0, 0, 0.06)',
-        vendorSidebar:
-          '0px 1px 2px rgba(0, 0, 0, 0.03), 0px 1px 3px rgba(0, 0, 0, 0.05)',
+        vendorSidebar: '0px 1px 2px rgba(0, 0, 0, 0.03), 0px 1px 3px rgba(0, 0, 0, 0.05)',
         searchBox: '0px 4px 4px rgba(99, 113, 134, 0.1)',
       },
       colors: {
@@ -37,8 +36,9 @@ const config = {
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        mains: 'red',
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
+          DEFAULT: 'var(--primary)',
           foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {

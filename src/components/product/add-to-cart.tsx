@@ -33,7 +33,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
 
   return (
     <button
-      className="rounded-full bg-blue-500 px-5 py-2 text-sm font-medium text-white focus:outline-none focus-visible:outline-none"
+      className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-white focus:outline-none focus-visible:outline-none"
       aria-label="Count Button"
       onClick={handleAddToCart}
     >

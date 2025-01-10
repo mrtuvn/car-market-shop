@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 type Props = {
-  cartTotal: string;
-};
+  cartTotal: string
+}
 const CartSummary: React.FC<Props> = ({ cartTotal }) => {
   return (
     <div className="wi-cart-checkout-wrapper border-grayp-200 top-20 rounded border bg-white p-5 shadow-md lg:sticky">
@@ -24,15 +24,15 @@ const CartSummary: React.FC<Props> = ({ cartTotal }) => {
       </div>
       <div className="wi-cart-checkout-proceed mt-8">
         <Link
-          to={"/checkout"}
+          to={'/checkout'}
           className={
-            "bg-heading sm:text-15px flex w-full items-center justify-center rounded bg-blue-500 px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:bg-opacity-90 focus:outline-none"
+            'bg-heading sm:text-15px flex w-full items-center justify-center rounded bg-primary px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:bg-opacity-90 focus:outline-none'
           }
         >
           <span className="py-0.5">Proceed To Checkout</span>
         </Link>
       </div>
     </div>
-  );
-};
-export default CartSummary;
+  )
+}
+export default CartSummary

@@ -1,45 +1,47 @@
-import { IoIosArrowUp } from 'react-icons/io';
-import { debounce } from 'lodash';
-import { useEffect, useState } from 'react';
+import { IoIosArrowUp } from 'react-icons/io'
+import { debounce } from 'lodash'
+import { useEffect, useState } from 'react'
 
 const BackToTopButton: React.FC = () => {
-  const [isShow, setIsShow] = useState(false);
+  const [isShow, setIsShow] = useState(false)
 
   useEffect(() => {
     const handleScrollListener = debounce((e) => {
-      e.preventDefault();
-      const currentScrollY = window.scrollY;
+      e.preventDefault()
+      const currentScrollY = window.scrollY
       //const windowHeight = window.innerHeight;
       //const totalScrollHeight = document.body.scrollHeight;
 
-        if (
-            currentScrollY <= 100
-            //|| currentScrollY >= totalScrollHeight - windowHeight - 20
-        ) {
-            setIsShow(false);
-            return;
-        }
+      if (
+        currentScrollY <= 100
+        //|| currentScrollY >= totalScrollHeight - windowHeight - 20
+      ) {
+        setIsShow(false)
+        return
+      }
 
-      setIsShow(true);
-    }, 100);
+      setIsShow(true)
+    }, 100)
 
-    window.addEventListener('scroll', handleScrollListener);
+    window.addEventListener('scroll', handleScrollListener)
 
     return () => {
-      window.removeEventListener('scroll', handleScrollListener);
-    };
-  }, []);
+      window.removeEventListener('scroll', handleScrollListener)
+    }
+  }, [])
 
   const handleClick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
-    <div onClick={handleClick} className={`fixed bottom-20 right-10 z-[100] flex content-center items-center cursor-pointer rounded-full 
-    w-12  h-12 bg-blue-500 shadow-quickview transition ease-in-out duration-200 ${!isShow && 'opacity-0 translate-y-7'}`}>
-      <IoIosArrowUp className="text-xl lg:text-2xl m-auto text-white"  />
+    <div
+      onClick={handleClick}
+      className={`fixed bottom-20 right-10 z-[100] flex h-12 w-12 cursor-pointer content-center items-center rounded-full bg-primary shadow-quickview transition duration-200 ease-in-out ${!isShow && 'translate-y-7 opacity-0'}`}
+    >
+      <IoIosArrowUp className="m-auto text-xl text-white lg:text-2xl" />
     </div>
   )
 }
 
-export default BackToTopButton;
+export default BackToTopButton

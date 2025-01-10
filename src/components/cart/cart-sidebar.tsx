@@ -1,21 +1,21 @@
-import { Link } from "react-router-dom";
-import { useDrawer } from "../../contexts";
-import Heading from "../ui/heading";
-import usePrice from "../product/use-price";
-import cn from "classnames";
-import EmptyCart from "./empty-cart";
-import Scrollbar from "../ui/scrollbar";
-import CloseIcon from "../icons/close-icon";
-import CartSideBarItems from "./cart-sidebar-items";
-import { useAppSelector } from "../../hooks";
+import { Link } from 'react-router-dom'
+import { useDrawer } from '../../contexts'
+import Heading from '../ui/heading'
+import usePrice from '../product/use-price'
+import cn from 'classnames'
+import EmptyCart from './empty-cart'
+import Scrollbar from '../ui/scrollbar'
+import CloseIcon from '../icons/close-icon'
+import CartSideBarItems from './cart-sidebar-items'
+import { useAppSelector } from '../../hooks'
 
 const CartSideBar = () => {
-  const { closeDrawer } = useDrawer();
-  const { items, total, isEmpty } = useAppSelector((state) => state.cart);
+  const { closeDrawer } = useDrawer()
+  const { items, total, isEmpty } = useAppSelector((state) => state.cart)
   const { price: cartTotal } = usePrice({
     amount: total,
-    currencyCode: "USD",
-  });
+    currencyCode: 'USD',
+  })
   return (
     <div className="flex h-full w-full flex-col justify-between">
       <div className="border-gray-base relative flex w-full items-center justify-between border-b px-5 py-5 md:px-7">
@@ -24,7 +24,7 @@ const CartSideBar = () => {
         <div className="flex items-center">
           <button
             className="flex flex-shrink items-center"
-            aria-label={"Close"}
+            aria-label={'Close'}
             onClick={closeDrawer}
           >
             <CloseIcon />
@@ -35,9 +35,7 @@ const CartSideBar = () => {
       {!isEmpty ? (
         <Scrollbar className="cart-scrollbar w-full flex-grow">
           <div className="h-[calc(100vh-350px)] w-full space-y-5 px-5">
-            {items?.map((item) => (
-              <CartSideBarItems item={item} key={item.id} />
-            ))}
+            {items?.map((item) => <CartSideBarItems item={item} key={item.id} />)}
           </div>
         </Scrollbar>
       ) : (
@@ -56,11 +54,11 @@ const CartSideBar = () => {
           </div>
           <div className="flex flex-col gap-5" onClick={closeDrawer}>
             <Link
-              to={"/cart"}
+              to={'/cart'}
               className={cn(
-                "bg-heading sm:text-15px flex w-full items-center justify-center rounded bg-gray-500 px-5 py-3 text-sm font-semibold text-white shadow-lg transition duration-300 hover:bg-opacity-90 focus:outline-none",
+                'bg-heading sm:text-15px flex w-full items-center justify-center rounded bg-gray-500 px-5 py-3 text-sm font-semibold text-white shadow-lg transition duration-300 hover:bg-opacity-90 focus:outline-none',
                 {
-                  "cursor-not-allowed !bg-[#EEEEEE] !text-black !text-opacity-25 hover:!bg-[#EEEEEE]":
+                  'cursor-not-allowed !bg-[#EEEEEE] !text-black !text-opacity-25 hover:!bg-[#EEEEEE]':
                     isEmpty,
                 },
               )}
@@ -69,11 +67,11 @@ const CartSideBar = () => {
             </Link>
 
             <Link
-              to={"/checkout"}
+              to={'/checkout'}
               className={cn(
-                "bg-heading sm:text-15px flex w-full items-center justify-center rounded bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow-lg transition duration-300 hover:bg-opacity-90 focus:outline-none",
+                'bg-heading sm:text-15px flex w-full items-center justify-center rounded bg-primary px-5 py-3 text-sm font-semibold text-white shadow-lg transition duration-300 hover:bg-opacity-90 focus:outline-none',
                 {
-                  "cursor-not-allowed !bg-[#EEEEEE] !text-black !text-opacity-25 hover:!bg-[#EEEEEE]":
+                  'cursor-not-allowed !bg-[#EEEEEE] !text-black !text-opacity-25 hover:!bg-[#EEEEEE]':
                     isEmpty,
                 },
               )}
@@ -84,7 +82,7 @@ const CartSideBar = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default CartSideBar;
+export default CartSideBar

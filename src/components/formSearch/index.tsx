@@ -1,72 +1,67 @@
 // @ts-ignore
-import React, { useState, useMemo } from "react";
-import cn from "classnames";
-import { Product } from "../../types/Product";
-import { fetchSearchProducts } from "../../api/index";
-import SearchItem from "./searchItem";
-import { useQuery } from "@tanstack/react-query";
-import Scrollbar from "../ui/scrollbar";
-import SearchSkeleton from "./searchSkeleton";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useMemo } from 'react'
+import cn from 'classnames'
+import { Product } from '../../types/Product'
+import { fetchSearchProducts } from '../../api/index'
+import SearchItem from './searchItem'
+import { useQuery } from '@tanstack/react-query'
+import Scrollbar from '../ui/scrollbar'
+import SearchSkeleton from './searchSkeleton'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
-  className?: string;
+  className?: string
 }
 
-const FormSearch: React.FC<Props> = ({ className = "md:w-[730px]" }) => {
-  const [isSearching, setIsSearching] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [category, setCategory] = useState("");
+const FormSearch: React.FC<Props> = ({ className = 'md:w-[730px]' }) => {
+  const [isSearching, setIsSearching] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [category, setCategory] = useState('')
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   // Gọi API tìm kiếm sản phẩm với useQuery dựa trên từ khóa và danh mục
   const { data: products = [], isLoading } = useQuery<Product[]>({
-    queryKey: ["products", searchTerm, category],
+    queryKey: ['products', searchTerm, category],
     queryFn: () => fetchSearchProducts(searchTerm, category),
     enabled: !!searchTerm, // Chỉ gọi API khi có từ khóa
-  });
+  })
 
   // Sử dụng useMemo để chỉ lọc lại danh sách khi searchTerm thay đổi
   const filteredProducts = useMemo(() => {
-    if (!products) return [];
-    return products;
-  }, [products]);
+    if (!products) return []
+    return products
+  }, [products])
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    navigate(`/search?q=${searchTerm}&category=${category}`);
-  };
+    e.preventDefault()
+    navigate(`/search?q=${searchTerm}&category=${category}`)
+  }
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-    setIsSearching(true);
-  };
+    const value = e.target.value
+    setSearchTerm(value)
+    setIsSearching(true)
+  }
 
   // Handle input focus to show dropdown
   const handleSearchFocus = () => {
-    setIsSearching(true);
-  };
+    setIsSearching(true)
+  }
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    setCategory(value);
-  };
+    const value = e.target.value
+    setCategory(value)
+  }
 
   // Handle blur event to close the popover
   const handleBlur = () => {
     setTimeout(() => {
-      setIsSearching(false);
-    }, 200); // Short delay to allow selection
-  };
+      setIsSearching(false)
+    }, 200) // Short delay to allow selection
+  }
 
   return (
-    <div
-      className={cn(
-        "relative w-full transition-all duration-200 ease-in-out",
-        className,
-      )}
-    >
+    <div className={cn('relative w-full transition-all duration-200 ease-in-out', className)}>
       <form onSubmit={handleSubmit} className="flex flex-row gap-2">
         <div className="flex w-full flex-row rounded border shadow-inner">
           <input
@@ -94,7 +89,7 @@ const FormSearch: React.FC<Props> = ({ className = "md:w-[730px]" }) => {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-40 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+          className="w-40 rounded bg-primary px-4 py-2 text-white hover:bg-primary"
         >
           Search
         </button>
@@ -111,9 +106,7 @@ const FormSearch: React.FC<Props> = ({ className = "md:w-[730px]" }) => {
               {/* No results message */}
               {filteredProducts?.length === 0 && !isLoading && (
                 <div className="no-results flex min-h-52 items-center justify-center">
-                  <h3 className="text-lg">
-                    Not found! Try with another keyword.
-                  </h3>
+                  <h3 className="text-lg">Not found! Try with another keyword.</h3>
                 </div>
               )}
 
@@ -127,6 +120,6 @@ const FormSearch: React.FC<Props> = ({ className = "md:w-[730px]" }) => {
         </div>
       )}
     </div>
-  );
-};
-export default FormSearch;
+  )
+}
+export default FormSearch

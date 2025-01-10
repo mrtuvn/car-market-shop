@@ -1,16 +1,16 @@
-'use client';
+'use client'
 
-import cn from 'classnames';
-import { forwardRef, ButtonHTMLAttributes } from 'react';
-import { ImSpinner2 } from 'react-icons/im';
+import cn from 'classnames'
+import { forwardRef, ButtonHTMLAttributes } from 'react'
+import { ImSpinner2 } from 'react-icons/im'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  className?: string;
-  variant?: 'primary' | 'border' | 'formButton';
-  active?: boolean;
-  type?: 'submit' | 'reset' | 'button';
-  loading?: boolean;
-  disabled?: boolean;
+  className?: string
+  variant?: 'primary' | 'border' | 'formButton'
+  active?: boolean
+  type?: 'submit' | 'reset' | 'button'
+  loading?: boolean
+  disabled?: boolean
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
@@ -22,22 +22,21 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     loading = false,
     disabled = false,
     ...rest
-  } = props;
+  } = props
 
   const rootClassName = cn(
     'group text-[13px] md:text-sm lg:text-15px leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-body font-medium text-center justify-center tracking-[0.2px] rounded placeholder-white focus-visible:outline-none focus:outline-none',
     {
-      'h-12 md:h-14 bg-blue-500 text-white tracking-widest px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-opacity-90':
+      'h-12 md:h-14 bg-primary text-white tracking-widest px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-opacity-90':
         variant === 'primary',
       'h-12 md:h-14 bg-brand-light text-base border border-border-four tracking-widest px-5  py-4 md:py-3.5 lg:py-4':
         variant === 'border',
-      'h-11 md:h-[50px] bg-blue-500 text-white font-manrope px-5 lg:px-6 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-opacity-90 focus:bg-opacity-70':
+      'h-11 md:h-[50px] bg-primary text-white font-manrope px-5 lg:px-6 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-opacity-90 focus:bg-opacity-70':
         variant === 'formButton',
-      'cursor-not-allowed hover:cursor-not-allowed bg-opacity-50 hover:bg-opacity-50':
-        disabled,
+      'cursor-not-allowed hover:cursor-not-allowed bg-opacity-50 hover:bg-opacity-50': disabled,
     },
-    className
-  );
+    className,
+  )
 
   return (
     <button
@@ -50,12 +49,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     >
       {children}
       {loading && (
-        <ImSpinner2 className="w-5 h-5 animate-spin ltr:-mr-1 rtl:-ml-1 ltr:ml-3 rtl:mr-3 " />
+        <ImSpinner2 className="h-5 w-5 animate-spin ltr:-mr-1 ltr:ml-3 rtl:-ml-1 rtl:mr-3" />
       )}
     </button>
-  );
-});
+  )
+})
 
-Button.displayName = 'Button';
+Button.displayName = 'Button'
 
-export default Button;
+export default Button

@@ -29,7 +29,7 @@ const CartButton: React.FC<Props> = ({ className, iconClassName = '', hideLabel 
         <div className="cart-button relative flex items-center">
           <CartIcon />
           {totalItems > 0 && (
-            <span className="cart-counter-badge absolute -top-1 left-3 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-blue-500 text-[11px] text-white">
+            <span className="cart-counter-badge absolute -top-1 left-3 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-primary text-[11px] text-white">
               {totalItems}
             </span>
           )}
