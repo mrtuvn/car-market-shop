@@ -13,6 +13,8 @@ import {
 
 import PopularProduct from '../components/product-feeds/popular-product'
 import NewProduct from '../components/product-feeds/new-product'
+import Posts from '../components/post/Posts'
+
 const HomePage = () => {
   return (
     <>
@@ -42,6 +44,7 @@ const HomePage = () => {
           <Listingtabs />
           <BannerGrid data={gridHero2} grid={3} className="mb-8 lg:mb-12" />
           <PopularProduct className="" />
+          <Posts />
         </Container>
       </div>
     </>
