@@ -35,7 +35,7 @@ const WishlistButton: React.FC<Props> = ({ product, className }) => {
             handleBtnWishlist()
           }}
           className={cn(
-            'rounded-full bg-gray-200 px-3 py-3 text-gray-600 hover:bg-blue-500 hover:text-white',
+            'rounded-full bg-gray-200 px-3 py-3 text-gray-600 hover:bg-primary hover:text-white',
             className,
           )}
         >
@@ -48,7 +48,7 @@ const WishlistButton: React.FC<Props> = ({ product, className }) => {
             handleBtnWishlist()
           }}
           className={cn(
-            'rounded-full bg-gray-200 px-3 py-3 text-gray-600 hover:bg-blue-500 hover:text-white',
+            'rounded-full bg-gray-200 px-3 py-3 text-gray-600 hover:bg-primary hover:text-white',
             className,
           )}
         >

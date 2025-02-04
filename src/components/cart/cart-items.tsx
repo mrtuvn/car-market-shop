@@ -3,8 +3,8 @@ import usePrice from '../product/use-price'
 import ImageFill from '../ui/image'
 import Counter from '../ui/counter'
 import CloseIcon from '../icons/close-icon'
-import { useAppDispatch } from '../../hooks'
-import { REMOVE_ITEM, UPDATE_ITEM } from '../../slices/cart/cartSlice'
+import { UPDATE_ITEM, REMOVE_ITEM } from '@/slices/cart/cartSlice'
+import { useAppDispatch } from '@/hooks'
 
 type CartItemProps = {
   item: any

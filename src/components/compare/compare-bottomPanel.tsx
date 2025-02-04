@@ -56,7 +56,7 @@ const CompareBotomPanel: React.FC = () => {
                 <div className="c-cta button">
                   <Link
                     to="/compare"
-                    className="block items-center justify-center rounded-full bg-blue-500 px-4 py-1 text-sm font-medium leading-6 text-white focus:outline-none focus-visible:outline-none"
+                    className="block items-center justify-center rounded-full bg-primary px-4 py-1 text-sm font-medium leading-6 text-white focus:outline-none focus-visible:outline-none"
                   >
                     <span className="cmp-button__text c-button__text">Compare</span>
                   </Link>

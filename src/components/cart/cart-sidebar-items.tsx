@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 import usePrice from '../product/use-price'
 import { IoIosCloseCircle } from 'react-icons/io'
-import { REMOVE_ITEM } from '../../slices/cart/cartSlice'
-import { useAppDispatch } from '../../hooks'
+import Counter from '../ui/counter'
+import { UPDATE_ITEM, REMOVE_ITEM } from '@/slices/cart/cartSlice'
+import { useAppDispatch } from '@/hooks'
 
 type CartItemProps = {
   item: any
@@ -24,6 +25,30 @@ const CartSideBarItems: React.FC<CartItemProps> = ({ item }) => {
     e.preventDefault()
     dispatch(REMOVE_ITEM(id))
   }
+
+  const outOfStock = item.quantity >= item.stock
+
+  const handleQuantityChange = (newQuantity: number) => {
+    if (newQuantity <= 0) {
+      dispatch(REMOVE_ITEM(item.id))
+    } else if (newQuantity > item.stock) {
+      // Optional: Show an error or limit to max stock
+      dispatch(
+        UPDATE_ITEM({
+          productId: item.id,
+          quantity: item.stock,
+        }),
+      )
+    } else {
+      dispatch(
+        UPDATE_ITEM({
+          productId: item.id,
+          quantity: newQuantity,
+        }),
+      )
+    }
+  }
+
   return (
     <div
       className={`group relative flex h-auto w-full justify-start last:border-b-0`}
@@ -49,8 +74,18 @@ const CartSideBarItems: React.FC<CartItemProps> = ({ item }) => {
           >
             {title}
           </Link>
-          <div className="mt-3 block text-sm capitalize text-gray-400">
-            {category} X {quantity}
+          <div className="text-black-400 mt-3 block text-sm capitalize">
+            {category}
+
+            <div className="wi-product-quantity text-black-400 relative w-32 pt-2">
+              <Counter
+                value={quantity}
+                onIncrement={() => handleQuantityChange(item.quantity + 1)}
+                onDecrement={() => handleQuantityChange(item.quantity - 1)}
+                variant="cart"
+                disabled={outOfStock}
+              />
+            </div>
           </div>
         </div>
 

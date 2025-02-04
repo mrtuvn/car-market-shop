@@ -36,6 +36,7 @@ import CompareBotomPanel from '../components/compare/compare-bottomPanel'
 import { Provider } from 'react-redux'
 import store from '@/components/todo-redux/redux/store'
 import ContactPage from '@/pages/contact'
+import BlogDetails from '@/pages/blogDetails'
 
 export const router = createBrowserRouter([
   {
@@ -138,6 +139,10 @@ export const router = createBrowserRouter([
       {
         path: 'blogs',
         element: <BlogsPage />,
+      },
+      {
+        path: 'post/:id',
+        element: <BlogDetails />,
       },
       {
         path: 'contact',

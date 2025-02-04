@@ -7,11 +7,20 @@ import EmptyCart from './empty-cart'
 import Scrollbar from '../ui/scrollbar'
 import CloseIcon from '../icons/close-icon'
 import CartSideBarItems from './cart-sidebar-items'
-import { useAppSelector } from '../../hooks'
+import { useAppSelector, useAppDispatch } from '@/hooks'
+import { CLEAR_CART } from '@/slices/cart/cartSlice'
 
 const CartSideBar = () => {
   const { closeDrawer } = useDrawer()
-  const { items, total, isEmpty } = useAppSelector((state) => state.cart)
+  const dispatch = useAppDispatch()
+
+  const triggerEmptyCart = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    dispatch(CLEAR_CART())
+  }
+
+  const { items, total, isEmpty, totalItems } = useAppSelector((state) => state.cart)
   const { price: cartTotal } = usePrice({
     amount: total,
     currencyCode: 'USD',
@@ -51,6 +60,9 @@ const CartSideBar = () => {
             <div className="ml-auto min-w-[80px] shrink-0 text-right text-base font-semibold md:text-lg">
               {cartTotal}
             </div>
+          </div>
+          <div className="cursor-pointer text-center text-sm md:pb-3">
+            <p onClick={triggerEmptyCart}>CLEAR ALL {totalItems} ITEMS</p>
           </div>
           <div className="flex flex-col gap-5" onClick={closeDrawer}>
             <Link

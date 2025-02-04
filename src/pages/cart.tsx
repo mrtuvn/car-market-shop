@@ -4,7 +4,7 @@ import Container from '../components/ui/container'
 const CartPage = () => {
   return (
     <Container>
-      <CartArea />;
+      <CartArea />
     </Container>
   )
 }

@@ -35,7 +35,7 @@ const CompareButton: React.FC<Props> = ({ product, className }) => {
             dispatch(removeFromCompare(product?.id))
           }}
           className={cn(
-            'rounded-full bg-gray-200 px-3 py-3 text-gray-600 hover:bg-blue-500 hover:text-white',
+            'rounded-full bg-gray-200 px-3 py-3 text-gray-600 hover:bg-primary hover:text-white',
             className,
           )}
         >
@@ -45,7 +45,7 @@ const CompareButton: React.FC<Props> = ({ product, className }) => {
         <button
           onClick={handleAddToCompare}
           className={cn(
-            'rounded-full bg-gray-200 px-3 py-3 text-gray-600 hover:bg-blue-500 hover:text-white',
+            'rounded-full bg-gray-200 px-3 py-3 text-gray-600 hover:bg-primary hover:text-white',
             className,
           )}
         >

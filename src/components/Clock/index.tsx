@@ -1,33 +1,33 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from 'react'
 
 const ClockCountdown: React.FC = () => {
-  const inputElement = useRef(null);
+  const inputElement = useRef(null)
 
   // Initialize state variables for timer and timeInterval
-  const [seconds, setSeconds] = useState<number>(0);
-  const [timeInterval, setTimeInterval] = useState<boolean>(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null); // Giữ `intervalId` bằng `useRef`
+  const [seconds, setSeconds] = useState<number>(0)
+  const [timeInterval, setTimeInterval] = useState<boolean>(false)
+  const intervalRef = useRef<NodeJS.Timeout | null>(null) // Giữ `intervalId` bằng `useRef`
 
   const startTimer = () => {
     if (!timeInterval) {
-      setTimeInterval(true);
+      setTimeInterval(true)
       intervalRef.current = setInterval(() => {
-        setSeconds((prevCount) => prevCount + 1);
-      }, 1000);
+        setSeconds((prevCount) => prevCount + 1)
+      }, 1000)
     }
-  };
+  }
 
   const pauseTimer = () => {
     if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null; // Xóa `intervalId`
+      clearInterval(intervalRef.current)
+      intervalRef.current = null // Xóa `intervalId`
     }
-    setTimeInterval(false);
-  };
+    setTimeInterval(false)
+  }
   const resetTimer = () => {
-    setTimeInterval(false);
-    setSeconds(0); // Đặt lại bộ đếm về 0
-  };
+    setTimeInterval(false)
+    setSeconds(0) // Đặt lại bộ đếm về 0
+  }
 
   /*useEffect(()=>{
         let timer: NodeJS.Timeout; // Khai báo kiểu của timer
@@ -49,25 +49,25 @@ const ClockCountdown: React.FC = () => {
       <h1 className="mb-3">Timer: {seconds} </h1>
       <button
         onClick={startTimer}
-        className="start-button bg-blue-500 text-white px-4 py-2 rounded mr-2"
+        className="start-button mr-2 rounded bg-primary px-4 py-2 text-white"
       >
         Start
       </button>
 
       <button
         onClick={pauseTimer}
-        className="stop-button bg-red-500 text-white px-4 py-2 rounded mr-2"
+        className="stop-button mr-2 rounded bg-red-500 px-4 py-2 text-white"
       >
         Pause
       </button>
       <button
         onClick={resetTimer}
-        className="start-button bg-blue-500 text-white px-4 py-2 rounded mr-2"
+        className="start-button mr-2 rounded bg-primary px-4 py-2 text-white"
       >
         Reset
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default ClockCountdown;
+export default ClockCountdown
