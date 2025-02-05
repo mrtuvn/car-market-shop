@@ -39,7 +39,7 @@ yarn-error.log*
 next-env.d.ts
 
 #should ignore later
-#.env
+.env
 
 
 /media 
